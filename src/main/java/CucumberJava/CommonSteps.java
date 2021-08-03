@@ -12,22 +12,23 @@ import java.util.concurrent.TimeUnit;
 public class CommonSteps {
 
     private WebDriver driver = null;
-    private WebDriverWait wait=null;
+    private WebDriverWait wait = null;
 
-    private static boolean initialized = false;
+  //  private static boolean initialized = false;
 
     @Before
     public void setUp() throws Exception {
-        if (!initialized) {
+     //   if (!initialized) {
             // initialize the driver
             String path = System.getProperty("user.dir");
             System.out.println("Home Path: " + path);
-            System.setProperty("webdriver.chrome.driver", path + "/src/main/resources/drivers/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", path + "/src/main/resources/drivers/chromedriver_mac.exe");
             driver = new ChromeDriver();
             wait = new WebDriverWait(driver, 20);
 
-            initialized = true;
-        }
+     //       initialized = true;
+   //     }
+
     }
 
     public WebDriver getDriver() {

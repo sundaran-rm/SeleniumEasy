@@ -20,6 +20,13 @@ public class SeleniumEasySteps {
     By singleInputBox = By.xpath("//input[@id='user-message']");
     By showMessageButton = By.xpath("//button[contains(text(),'Show Message')]");
     By resultMessage = By.xpath("//span[@id='display']");
+    By input1 = By.xpath("//input[@id='sum1']");
+    By input2 = By.xpath("//input[@id='sum2']");
+    String inputValue1 ="4";
+    String inputValue2 ="5";
+    By getTotalButton = By.xpath("//button[contains(text(),'Get Total')]");
+    By displayTotal = By.xpath("//span[@id='displayvalue']");
+
 
     public SeleniumEasySteps (CommonSteps commonSteps) {
         this.commonSteps = commonSteps;
@@ -67,5 +74,28 @@ public class SeleniumEasySteps {
         wait.until(ExpectedConditions.elementToBeClickable(resultMessage));
         String text = driver.findElement(resultMessage).getText();
         Assert.assertEquals("Selenium", text);
+    }
+
+    @And("User enters a and b values")
+    public void userEntersAAndBValues() throws InterruptedException {
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(input1)));
+        driver.findElement(input1).sendKeys(inputValue1);
+        driver.findElement(input2).sendKeys(inputValue2);
+
+    }
+
+    @And("User clicks on Get Total Button")
+    public void userClicksOnGetTotalButton() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(getTotalButton)));
+        driver.findElement(getTotalButton).click();
+    }
+
+    @Then("Total should be displayed")
+    public void totalShouldBeDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(displayTotal)));
+        String displayValue = driver.findElement(displayTotal).getText();
+        Assert.assertEquals("9", displayValue);
+
     }
 }
