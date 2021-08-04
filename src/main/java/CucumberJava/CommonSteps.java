@@ -18,7 +18,7 @@ public class CommonSteps {
 
     @Before
     public void setUp() throws Exception {
-     //   if (!initialized) {
+        if (driver == null) {
             // initialize the driver
             String path = System.getProperty("user.dir");
             System.out.println("Home Path: " + path);
@@ -27,7 +27,7 @@ public class CommonSteps {
             wait = new WebDriverWait(driver, 20);
 
      //       initialized = true;
-   //     }
+        }
 
     }
 
@@ -49,5 +49,6 @@ public class CommonSteps {
     public void browserShouldClose() {
         driver.close();
         driver.quit();
+        driver = null;
     }
 }
