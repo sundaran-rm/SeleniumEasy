@@ -16,6 +16,7 @@ public class SeleniumEasySteps {
     String url = "https://www.seleniumeasy.com/test/";
     By startPracticeButton = By.xpath("//a[@id='btn_basic_example']");
     By popupClose =  By.id("at-cv-lightbox-close");
+    //Simple Form
     By simpleFormLink =  By.xpath("//body/div[@id='easycont']/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]");
     By singleInputBox = By.xpath("//input[@id='user-message']");
     By showMessageButton = By.xpath("//button[contains(text(),'Show Message')]");
@@ -26,7 +27,15 @@ public class SeleniumEasySteps {
     String inputValue2 ="5";
     By getTotalButton = By.xpath("//button[contains(text(),'Get Total')]");
     By displayTotal = By.xpath("//span[@id='displayvalue']");
-
+    //Radio Form
+    By radioFormLink = By.xpath("//body[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/a[3]");
+    By radioButtonMale = By.xpath("//body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/label[1]/input[1]");
+    By radioButtonGroupFemale = By.xpath("//body[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/label[2]/input[1]");
+    By radioButtonAgeGroup = By.xpath("//body[1]/div[2]/div[1]/div[2]/div[2]/div[2]/div[2]/label[2]/input[1]");
+    By checkValueButton = By.id("buttoncheck");
+    By getValueButton = By.xpath("//body[1]/div[2]/div[1]/div[2]/div[2]/div[2]/button[1]");
+    By checkResults = By.xpath("//body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/p[3]");
+    By groupText = By.xpath("//body[1]/div[2]/div[1]/div[2]/div[2]/div[2]/p[2]");
 
     public SeleniumEasySteps (CommonSteps commonSteps) {
         this.commonSteps = commonSteps;
@@ -97,5 +106,57 @@ public class SeleniumEasySteps {
         String displayValue = driver.findElement(displayTotal).getText();
         Assert.assertEquals("9", displayValue);
 
+    }
+
+    @When("User clicks Radio Buttons Demo")
+    public void userClicksRadioButtonsDemo() {
+        wait.until(ExpectedConditions.elementToBeClickable(popupClose));
+        driver.findElement(popupClose).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(startPracticeButton));
+        driver.findElement(startPracticeButton).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(radioFormLink));
+        driver.findElement(radioFormLink).click();
+
+    }
+
+    @And("User lands on the Radio Buttons Demo page")
+    public void userLandsOnTheRadioButtonsDemoPage() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(radioButtonMale)));
+
+    }
+
+    @And("User clicks Male radio button")
+    public void userClicksMaleRadioButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(radioButtonMale));
+        driver.findElement(radioButtonMale).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(checkValueButton));
+        driver.findElement(checkValueButton).click();
+    }
+
+    @And("User clicks Female radio button with age group '5 to 15'")
+    public void userClicksFemaleRadioButtonWithAgeGroupTo() {
+        wait.until(ExpectedConditions.elementToBeClickable(radioButtonGroupFemale));
+        driver.findElement(radioButtonGroupFemale).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(radioButtonAgeGroup));
+        driver.findElement(radioButtonAgeGroup).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(getValueButton));
+        driver.findElement(getValueButton).click();
+    }
+
+    @Then("Radio Buttons should be selected")
+    public void radioButtonsShouldBeSelected() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(checkResults)));
+        String displayText = driver.findElement(checkResults).getText();
+        Assert.assertEquals("Radio button 'Male' is checked", displayText);
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(groupText)));
+        String displayGroupText = driver.findElement(groupText).getText();
+        Assert.assertEquals("Sex : Female\n" +
+                "Age group: 5 - 15", displayGroupText);
     }
 }

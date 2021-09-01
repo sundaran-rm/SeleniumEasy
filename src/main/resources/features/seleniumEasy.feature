@@ -18,3 +18,13 @@ Feature: Selenium Easy Beginner
       And User clicks on Get Total Button
       Then Total should be displayed
       And Browser should close
+
+  Scenario: Radio Buttons
+    Given Browser is open
+    And SE webpage is launched
+    When User clicks Radio Buttons Demo
+    And User lands on the Radio Buttons Demo page
+    And User clicks Male radio button
+    And User clicks Female radio button with age group '5 to 15'
+    Then Radio Buttons should be selected
+    And Browser should close
