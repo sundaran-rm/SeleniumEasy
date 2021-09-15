@@ -3,8 +3,10 @@ package StepDefinitions;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -51,4 +53,10 @@ public class CommonSteps {
         driver.quit();
         driver = null;
     }
+
+    public void clickElement(By element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        driver.findElement(element).click();
+    }
+
 }

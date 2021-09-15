@@ -51,15 +51,9 @@ public class SeleniumEasySteps {
 
     @When("User clicks Simple Form Demo")
     public void userClicksSimpleFormDemo() throws InterruptedException {
-
-        wait.until(ExpectedConditions.elementToBeClickable(popupClose));
-        driver.findElement(popupClose).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(startPracticeButton));
-        driver.findElement(startPracticeButton).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(simpleFormLink));
-        driver.findElement(simpleFormLink).click();
+        commonSteps.clickElement(popupClose);
+        commonSteps.clickElement(startPracticeButton);
+        commonSteps.clickElement(simpleFormLink);
     }
 
     @And("User lands on the simple form demo page")
@@ -74,8 +68,7 @@ public class SeleniumEasySteps {
 
     @And("User clicks Show Message button")
     public void userClicksShowMessageButton() throws InterruptedException {
-        wait.until(ExpectedConditions.elementToBeClickable(showMessageButton));
-        driver.findElement(showMessageButton).click();
+        commonSteps.clickElement(showMessageButton);
     }
 
     @Then("Message should be displayed")
@@ -87,7 +80,6 @@ public class SeleniumEasySteps {
 
     @And("User enters a and b values")
     public void userEntersAAndBValues() throws InterruptedException {
-
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(input1)));
         driver.findElement(input1).sendKeys(inputValue1);
         driver.findElement(input2).sendKeys(inputValue2);
@@ -96,8 +88,7 @@ public class SeleniumEasySteps {
 
     @And("User clicks on Get Total Button")
     public void userClicksOnGetTotalButton() {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(getTotalButton)));
-        driver.findElement(getTotalButton).click();
+        commonSteps.clickElement(getTotalButton);
     }
 
     @Then("Total should be displayed")
@@ -105,47 +96,31 @@ public class SeleniumEasySteps {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(displayTotal)));
         String displayValue = driver.findElement(displayTotal).getText();
         Assert.assertEquals("9", displayValue);
-
     }
 
     @When("User clicks Radio Buttons Demo")
     public void userClicksRadioButtonsDemo() {
-        wait.until(ExpectedConditions.elementToBeClickable(popupClose));
-        driver.findElement(popupClose).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(startPracticeButton));
-        driver.findElement(startPracticeButton).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(radioFormLink));
-        driver.findElement(radioFormLink).click();
-
+        commonSteps.clickElement(popupClose);
+        commonSteps.clickElement(startPracticeButton);
+        commonSteps.clickElement(radioFormLink);
     }
 
     @And("User lands on the Radio Buttons Demo page")
     public void userLandsOnTheRadioButtonsDemoPage() {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(radioButtonMale)));
-
     }
 
     @And("User clicks Male radio button")
     public void userClicksMaleRadioButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(radioButtonMale));
-        driver.findElement(radioButtonMale).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(checkValueButton));
-        driver.findElement(checkValueButton).click();
+        commonSteps.clickElement(radioButtonMale);
+        commonSteps.clickElement(checkValueButton);
     }
 
     @And("User clicks Female radio button with age group '5 to 15'")
     public void userClicksFemaleRadioButtonWithAgeGroupTo() {
-        wait.until(ExpectedConditions.elementToBeClickable(radioButtonGroupFemale));
-        driver.findElement(radioButtonGroupFemale).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(radioButtonAgeGroup));
-        driver.findElement(radioButtonAgeGroup).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(getValueButton));
-        driver.findElement(getValueButton).click();
+        commonSteps.clickElement(radioButtonGroupFemale);
+        commonSteps.clickElement(radioButtonAgeGroup);
+        commonSteps.clickElement(getValueButton);
     }
 
     @Then("Radio Buttons should be selected")
